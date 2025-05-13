@@ -1,0 +1,834 @@
+/* Reset + Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  background: radial-gradient(circle at top left, #1a1a1a, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  min-height: 100vh;
+  padding: 10rem 15%;
+}
+
+.full-width-divider {
+  position: relative;
+  z-index: 3;
+  height: 3px;
+  background: #707070;
+  width: 99.6vw;
+  margin-left: calc(50% - 50vw);
+  border: none;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  padding: clamp(1rem, 5vw, 2rem) 10%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  color: #fff;
+  margin-left: 2rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .3s;
+}
+.navbar a:hover {
+  color: #313131;
+}
+
+.logo {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .3s;
+}
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* Home Section */
+.home {
+  width: 100%;
+  padding: 0 clamp(5%, 8vw, 10%);
+  position: relative;
+  padding-bottom: 0;
+}
+
+.home-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Image */
+.image-wrapper {
+  flex: 1 1 40%;
+  min-width: 300px;
+  position: relative;
+}
+.image-wrapper img {
+  width: 150%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 10px;
+  filter: grayscale(100%);
+  transform: translate(-18%, -3%);
+  display: block;
+}
+
+/* Text */
+.text-content {
+  flex: 2 1 50%;
+  min-width: 300px;
+  max-width: 700px;
+  padding: 0 1rem;
+  transform: translate(-12%, -83%);
+}
+.text-content h1 {
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: .7rem;
+}
+.text-content h2 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+.text-content p {
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.8;
+  color: #ccc;
+}
+
+/* Mist Overlay */
+.mist-overlay {
+  position: absolute;
+  top: 667px;
+  left: 0;
+  width: 100%;
+  height: clamp(200px, 40vh, 350px);
+  background: linear-gradient(to bottom, rgba(109, 109, 109, 0), #303030);
+  z-index: 2;
+}
+
+/* === Responsive Fixes === */
+@media (max-width: 1024px) {
+  .text-content {
+    transform: translate(0, -30%);
+    text-align: center;
+  }
+
+  .image-wrapper img {
+    transform: translate(0, 0);
+    width: 100%;
+  }
+
+  .home-content {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 6rem 5%;
+  }
+
+  .text-content {
+    padding: 0;
+    transform: none;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+  }
+}
+
+
+/* ===== PROJECT SECTION ===== */
+.project .section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.project .section-title h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ===== CAROUSEL VIEWPORT ===== */
+.project .carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  /* ★ transparent fade at 0–15% & 85–100% of the viewport ★ */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0,0,0,0)   0%,
+    rgba(0,0,0,1)  15%,
+    rgba(0,0,0,1)  85%,
+    rgba(0,0,0,0) 100%
+  );
+          mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black       15%,
+    black       85%,
+    transparent 100%
+  );
+  mask-repeat: no-repeat;
+}
+
+/* ===== FLEX TRACK WITH EDGE FADE MASK ===== */
+.project{
+
+scroll-margin: -6rem;
+
+
+}
+
+
+.project .carousel .track {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+/* ===== CARDS (3 visible at once) ===== */
+.project .carousel .card {
+  position: relative;
+  flex: 0 0 calc((100% - 2rem) / 3);
+  margin: 0 1rem;                   
+  background: #111;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  
+}
+.project .carousel .card:hover {
+  transform: scale(1.02);
+}
+
+/* rounded image tops */
+.project .carousel .card img {
+  display: block;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* ===== OVERLAY ===== */
+.project .carousel .card .overlay {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 30%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3));
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 1rem;
+  color: #fff;
+  overflow: hidden;
+  transition: height 0.3s ease, max-height 0.3s ease;
+}
+.project .carousel .card .overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.project .carousel .card .overlay .short {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+.project .carousel .card .overlay .full {
+  display: none;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* expand & swap on hover */
+.project .carousel .card:hover .overlay {
+  height: 50%;
+  max-height: 50%;
+}
+.project .carousel .card:hover .overlay .short {
+  display: none;
+}
+.project .carousel .card:hover .overlay .full {
+  display: block;
+}
+
+/* ===== INDICATORS ===== */
+.project .indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.project .dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: #777;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.project .dot.active {
+  background: #fff;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* ===== RESPONSIVE TWEAKS ===== */
+@media (max-width: 900px) {
+  .project .carousel .card {
+    flex: 0 0 calc((100% - 1rem) / 2);
+    margin: 0 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .project .carousel .card {
+    flex: 0 0 100%;
+    margin: 0;
+  }
+}
+
+
+/* =============== WHAT I BRING TO THE TABLE =============== */
+.skills {
+  scroll-margin-top: -1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(11rem, 8vw, 6rem) 15%;
+  color: #fff;
+  padding-bottom: 15.6%;
+  margin-top: 116px;
+}
+
+.skills-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.skills-desc {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  line-height: 1.6;
+  color: #ccc;
+  text-align: center;
+}
+
+.skills-label {
+  font-weight: 600;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* 5-column grid on desktop */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* style each column */
+.skill-col h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+.skill-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.skill-col ul li {
+  margin-bottom: 0.5rem;
+  color: #ddd;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.skill-col ul small {
+  display: block;
+  color: #aaa;
+  font-size: 0.8rem;
+  margin-top: -0.25rem;
+}
+
+/* ── RESPONSIVE BREAKPOINTS ── */
+/* tablet / small desktop: 2 columns */
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* mobile: 1 column, centered text */
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .skill-col h3 {
+    margin-top: 1rem;
+  }
+}
+
+/* ===== FIVERR SECTION ===== */
+.fiverr {
+  scroll-margin-top:  -4rem;
+  padding: clamp(13rem, 10vw, 8rem) 15%;
+  text-align: center;
+  color: #fff;
+}
+
+.fiverr .section-title h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.fiverr-content .intro {
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.fiverr-link {
+  margin-bottom: 2rem;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+}
+.fiverr-link a {
+  color: #fff;               /* white */
+  text-decoration: none;     /* optional: remove underline */
+  transition: color 0.3s;
+}
+
+
+.fiverr-link a:hover {
+  color: #3498db;            /* nice blue tone on hover */
+}
+
+.reviews-sat {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+.reviews-sat h3 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  margin-bottom: 0.75rem;
+}
+.reviews-sat p {
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.clients-say-title {
+  margin-bottom: 1rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+/* reuse your existing .project .carousel rules, but scoped under .fiverr */
+.fiverr .carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* <-- add bottom padding to make room for dots */
+  padding-bottom: 2.5rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-repeat: no-repeat;
+}
+
+.fiverr .carousel .track {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.fiverr .carousel .card {
+  flex: 0 0 calc((100% - 2rem) / 3);
+  margin: 0 1rem;
+  background: #111;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.fiverr .carousel .card:hover {
+  transform: scale(1.02);
+}
+
+.fiverr .carousel .card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fiverr .indicators {
+  position: absolute;
+  /* sit 1rem above the bottom of the padded area */
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  /* ensure they’re on top of everything */
+  z-index: 10;
+}
+.fiverr .dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: #777;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.fiverr .dot.active {
+  background: #fff;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* responsive tweaks */
+@media (max-width: 900px) {
+  .fiverr .carousel .card {
+    flex: 0 0 calc((100% - 1rem) / 2);
+    margin: 0 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .fiverr .carousel .card {
+    flex: 0 0 100%;
+    margin: 0;
+  }
+}
+
+/* — Contact Section — */
+.contact {
+  scroll-margin: -4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14rem 2rem;
+  background: var(--bg);
+  color: var(--txt);
+}
+
+/* The “card” container */
+.contact-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(41, 41, 41, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 3rem 2rem;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.contact-card h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.contact-card .contact-intro {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.btn-download,
+.btn-send {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  border: 2px solid var(--accent);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn-download:hover {
+  background: none;       /* keep it transparent */
+  border-color: var(--accent);  /* or whatever your normal border is */
+  color: #007bff;         /* blue text on hover */
+}
+
+.btn-download {
+  color: #fff;
+}
+
+.btn-download:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-send {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-send:hover {
+  background: var(--accent-2);
+}
+
+/* Form */
+.contact-form {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 0.5rem;
+  background: var(--bg);
+  color: var(--txt);
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* — Responsive tweaks — */
+@media (max-width: 768px) {
+  .contact {
+    padding: 4rem 1rem;
+  }
+  .contact-card {
+    padding: 2.5rem 1.5rem;
+  }
+  .contact-card h2 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-card {
+    padding: 2rem 1rem;
+  }
+  .contact-card h2 {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+  }
+  .btn-download,
+  .btn-send {
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }
+}
+
+.btn-download:hover {
+  background: none !important;
+  color: #007bff !important;
+}
+
+
+/* — Footer — */
+.footer {
+  background: var(--glass);
+  border-top: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  max-width: 800px;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--txt);
+  font-size: 1rem;
+}
+
+.footer-item i {
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.footer-item a {
+  color: var(--txt);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-item a:hover {
+  color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .footer-card {
+    gap: 1rem 1.5rem;
+  }
+  .footer-item {
+    font-size: 0.95rem;
+  }
+  .footer-item i {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* ===== Scroll Animation CSS ===== */
+
+.hidden {
+  opacity: 0;
+  transform: translateY(40px); /* starts from below */
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section {
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+
+/* Centered alert container */
+#alert-container {
+  position: fixed;
+  top: 1rem;            /* how far down from the top */
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+/* Individual toast (unchanged) */
+.alert-box {
+  background: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  min-width: 200px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeInOut 4s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translateY(-10px); }
+  10%  { opacity: 0.95; transform: translateY(0); }
+  90%  { opacity: 0.95; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+
+/* Glowy white scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  border: 2px solid transparent; /* gives extra padding inside */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 0, 0);
+  box-shadow: 0 0 8px rgb(0, 0, 0);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.8) transparent;
+}
+
+/* Optional: on hover in Firefox */
+@supports (scrollbar-color: auto) {
+  *:hover {
+    scrollbar-color: rgb(0, 0, 0) transparent;
+  }
+}
+
