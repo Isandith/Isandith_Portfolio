@@ -23,11 +23,17 @@ window.addEventListener('DOMContentLoaded', () => {
     const width  = s.clientWidth;
     const cWidth = carousel.clientWidth;
     const offset = left - (cWidth - width) / 2;
-    if (!animate) track.style.transition = 'none';
-    track.style.transform = `translateX(${-offset}px)`;
+
     if (!animate) {
-      void track.offsetWidth;
-      track.style.transition = '';
+      // Instant reposition without transition
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${-offset}px) translateZ(0)`;
+      void track.offsetWidth;       // force layout reflow
+      track.style.transition = '';  // restore transition
+    } else {
+      // Smooth animated reposition
+      track.offsetHeight; // force layout reflow for GPU
+      track.style.transform = `translateX(${-offset}px) translateZ(0)`;
     }
   }
 
@@ -57,8 +63,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // Core looping nav
   function moveTo(newIndex) {
     index = newIndex;
-    if (index < cloneCount)           index += realCount;
-    if (index >= cloneCount + realCount) index -= realCount;
+    if (index < cloneCount)               index += realCount;
+    if (index >= cloneCount + realCount)  index -= realCount;
     centerSlide(index);
     updateDots();
   }
@@ -67,9 +73,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let startX = 0, dragging = false;
 
   carousel.addEventListener('pointerdown', e => {
-    // **ignore if clicking on a dot**
-    if (e.target.closest('.indicators')) return;
-
+    if (e.target.closest('.indicators')) return; // ignore dot clicks
     dragging = true;
     startX = e.clientX;
     track.style.transition = 'none';
@@ -80,7 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!dragging) return;
     const dx   = e.clientX - startX;
     const base = -(slides[index].offsetLeft - (carousel.clientWidth - slides[index].clientWidth) / 2);
-    track.style.transform = `translateX(${base + dx}px)`;
+    track.style.transform = `translateX(${base + dx}px) translateZ(0)`;
   });
 
   carousel.addEventListener('pointerup', e => {
@@ -105,6 +109,10 @@ window.addEventListener('DOMContentLoaded', () => {
   carousel.addEventListener('mouseleave', startAuto);
   startAuto();
 
-  // Recenter on window resize
-  window.addEventListener('resize', () => centerSlide(index, false));
+  // Debounced recenter on window resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => centerSlide(index, false), 150);
+  });
 });
