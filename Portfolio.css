@@ -37,27 +37,38 @@ section {
 /* Header */
 .header {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: clamp(1rem, 5vw, 2rem) 10%;
+  padding: clamp(1rem, 5vw, 2rem) 5%;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
-  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1000;
 }
 
+
 .navbar a {
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
   color: #fff;
-  margin-left: 2rem;
   text-decoration: none;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
   font-weight: 500;
   transition: color .3s;
 }
+
+
+
+
 .navbar a:hover {
   color: #313131;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;                /* space between links on larger screens */
 }
 
 .logo {
@@ -72,10 +83,12 @@ section {
 
 /* Home Section */
 .home {
-  width: 100%;
-  padding: 0 clamp(5%, 8vw, 10%);
+  
   position: relative;
-  padding-bottom: 0;
+  width: 100%;
+  padding: 6rem 5% clamp(200px, 40vh, 350px);
+  min-height: auto;
+  overflow: hidden;
 }
 
 .home-content {
@@ -132,12 +145,17 @@ section {
 /* Mist Overlay */
 .mist-overlay {
   position: absolute;
-  top: 667px;
+  bottom: 353px;
   left: 0;
   width: 100%;
   height: clamp(200px, 40vh, 350px);
-  background: linear-gradient(to bottom, rgba(109, 109, 109, 0), #303030);
+  background: linear-gradient(
+    to bottom,
+    rgba(109, 109, 109, 0),
+    #303030
+  );
   z-index: 2;
+  pointer-events: none;
 }
 
 /* === Responsive Fixes === */
@@ -170,6 +188,30 @@ section {
 
   .image-wrapper img {
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: clamp(1rem, 5vw, 2rem) 1.5rem;
+  }
+
+  /* shrink logo on phones */
+  .logo {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+  }
+
+  .navbar {
+    flex: 1;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    overflow-x: auto;
+  }
+
+  .navbar a {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    padding: 0.25rem 0;
+    white-space: nowrap;
   }
 }
 
@@ -839,4 +881,6 @@ section {
     scrollbar-color: rgb(0, 0, 0) transparent;
   }
 }
+
+
 
