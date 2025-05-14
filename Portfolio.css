@@ -89,6 +89,7 @@ section {
   padding: 6rem 5% clamp(200px, 40vh, 350px);
   min-height: auto;
   overflow: hidden;
+  padding-bottom: 0;
 }
 
 .home-content {
@@ -145,7 +146,7 @@ section {
 /* Mist Overlay */
 .mist-overlay {
   position: absolute;
-  bottom: 353px;
+  bottom: 3px;
   left: 0;
   width: 100%;
   height: clamp(200px, 40vh, 350px);
