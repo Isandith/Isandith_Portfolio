@@ -381,14 +381,14 @@ backface-visibility: hidden;
 
 /* =============== WHAT I BRING TO THE TABLE =============== */
 .skills {
-  scroll-margin-top: -1rem;
+  scroll-margin-top: -6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: clamp(11rem, 8vw, 6rem) 15%;
   color: #fff;
   padding-bottom: 15.6%;
-  margin-top: 116px;
+      margin-top: 23px;
 }
 
 .skills-title {
@@ -470,8 +470,8 @@ backface-visibility: hidden;
 
 /* ===== FIVERR SECTION ===== */
 .fiverr {
-  scroll-margin-top:  -4rem;
-  padding: clamp(13rem, 10vw, 8rem) 15%;
+  scroll-margin-top:  -7rem;
+  padding: clamp(11rem, 10vw, 8rem) 15%;
   text-align: center;
   color: #fff;
 }
@@ -607,7 +607,7 @@ backface-visibility: hidden;
 
 /* — Contact Section — */
 .contact {
-  scroll-margin: -4rem;
+  scroll-margin: -7rem;
   display: flex;
   align-items: center;
   justify-content: center;
