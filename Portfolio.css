@@ -887,3 +887,15 @@ section {
 
 
 
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.site-logo {
+  height: 2rem;       /* adjust as needed */
+  margin-right: 0.5rem;
+}
+.site-title {
+  font-size: 1.5rem;
+}
